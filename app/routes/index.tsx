@@ -5,7 +5,7 @@ import { useFetcher } from "@remix-run/react";
 import clsx from "clsx";
 import { verifyMessage } from "ethers/lib/utils";
 import { useState } from "react";
-import { useSignMessage } from "wagmi";
+import { useAccount, useSignMessage } from "wagmi";
 import type { Env } from "~/types";
 
 type Result = {
@@ -37,6 +37,7 @@ export async function action({ request, context }: ActionArgs) {
 export default function Index() {
   const fetcher = useFetcher();
   const [response, setResponse] = useState("");
+  const { isConnected } = useAccount();
   const { isLoading: isSigning, signMessage } = useSignMessage({
     onSuccess(data, variables) {
       fetcher.submit(
@@ -104,18 +105,24 @@ export default function Index() {
               value={response}
               onChange={(e) => setResponse(e.target.value)}
             />
-            <button
-              type="submit"
-              className="mt-2 rounded bg-ruby-900 px-3 py-1.5 font-medium text-white transition-colors hover:bg-ruby-1000 disabled:opacity-50"
-              disabled={isSigning || isLoading}
-              onClick={handleSubmit}
-            >
-              {isSigning
-                ? "Signing..."
-                : isLoading
-                ? "Submitting..."
-                : "Sign & Submit"}
-            </button>
+            <div className="mt-2">
+              {isConnected ? (
+                <button
+                  type="submit"
+                  className="rounded bg-ruby-900 px-3 py-1.5 font-medium text-white transition-colors hover:bg-ruby-1000 disabled:opacity-50"
+                  disabled={isSigning || isLoading}
+                  onClick={handleSubmit}
+                >
+                  {isSigning
+                    ? "Signing..."
+                    : isLoading
+                    ? "Submitting..."
+                    : "Sign & Submit"}
+                </button>
+              ) : (
+                <ConnectButton />
+              )}
+            </div>
           </div>
         )}
       </div>
