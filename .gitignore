@@ -1,6 +1,7 @@
 node_modules
 
 /.cache
+/.mf
 /functions/\[\[path\]\].js*
 /functions/_assets
 /public/build

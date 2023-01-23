@@ -1,7 +1,6 @@
-export type CloudFlareEnvVar = "ALCHEMY_KEY" | "NODE_ENV" | "EXCHANGE_ENDPOINT";
-
-export type CloudFlareEnv = {
-  [key in CloudFlareEnvVar]: string;
+export type Env = {
+  NODE_ENV: "development" | "production";
+  ATLAS_MINE_HARVESTER_PARTS: KVNamespace;
 };
 
 export type Optional<T> = T | undefined;
