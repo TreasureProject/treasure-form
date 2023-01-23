@@ -5,6 +5,7 @@ node_modules
 /functions/\[\[path\]\].js*
 /functions/_assets
 /public/build
+.DS_Store
 .env
 
 /app/graphql/*.generated.ts

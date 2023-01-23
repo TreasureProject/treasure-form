@@ -106,7 +106,7 @@ export default function Index() {
             />
             <button
               type="submit"
-              className="mt-2 rounded bg-red-500 px-3 py-1.5 font-medium text-white transition-colors hover:bg-red-700 disabled:opacity-50"
+              className="mt-2 rounded bg-ruby-900 px-3 py-1.5 font-medium text-white transition-colors hover:bg-ruby-1000 disabled:opacity-50"
               disabled={isSigning || isLoading}
               onClick={handleSubmit}
             >
